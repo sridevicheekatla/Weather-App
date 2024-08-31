@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Trends</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center">Weather Analysis System</h1>
+
+    {% if message %}
+        <div class="alert {{ message_class }} mt-4" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="city">Enter City Name:</label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Weather</button>
+    </form>
+
+    {% if city %}
+    <div class="card mt-4">
+        <div class="card-header">
+            Weather Information for {{ city }}
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Current Condition:</strong> {{ condition }}</p>
+            <p class="card-text"><strong>Temperature:</strong> {{ temperature }} °C</p>
+            <p class="card-text"><strong>Humidity:</strong> {{ humidity }} %</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
